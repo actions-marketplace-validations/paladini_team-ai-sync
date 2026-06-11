@@ -42413,8 +42413,10 @@ class BitbucketPlatform {
         return repository.mainbranch?.name ?? 'main';
     }
     authenticatedRemoteUrl(repo, token) {
-        const username = this.username ?? 'x-token-auth';
-        return `https://${encodeURIComponent(username)}:${encodeURIComponent(token)}@bitbucket.org/${repo.fullName}.git`;
+        if (!this.username) {
+            throw new Error('Set BITBUCKET_USERNAME when using Bitbucket API tokens with git clone and push.');
+        }
+        return `https://${encodeURIComponent(this.username)}:${encodeURIComponent(token)}@bitbucket.org/${repo.fullName}.git`;
     }
     async createOrUpdateChangeRequest(repo, options, defaultBranch, body) {
         const base = `/repositories/${repo.owner}/${repo.repo}/pullrequests`;

@@ -86,19 +86,20 @@ To use a different variable name, pass `token-variable-name`.
 
 ## Bitbucket tokens
 
-For Bitbucket, use an OAuth token, repository access token, or app password that
-can read target repositories, push branches, and create pull requests. Store it
-as a repository or workspace variable:
+For Bitbucket, use an API token that can read target repositories, push
+branches, and create pull requests. Store it as a repository or workspace
+variable:
 
 ```yaml
 - pipe: paladini/team-ai-sync:1.0.0
   variables:
+    BITBUCKET_USERNAME: $BITBUCKET_USERNAME
     BITBUCKET_TOKEN: $BITBUCKET_TOKEN
     CONFIG_PATH: 'sync-config.json'
 ```
 
-When using an app password, also define `BITBUCKET_USERNAME`. Put the app
-password value in `BITBUCKET_TOKEN`.
+`BITBUCKET_USERNAME` must be your Bitbucket username. `BITBUCKET_TOKEN` must be
+the API token value. App passwords are not recommended for new setups.
 
 ## Rotation
 

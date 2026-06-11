@@ -65,6 +65,7 @@ pipelines:
         script:
           - pipe: paladini/team-ai-sync:1.0.0
             variables:
+              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
               BITBUCKET_TOKEN: $BITBUCKET_TOKEN
               CONFIG_PATH: 'sync-config.json'
 ```
@@ -72,9 +73,9 @@ pipelines:
 Bitbucket target repositories use `workspace/repo` values in
 `targetRepositories`. The pipe creates or updates pull requests.
 
-For app passwords, define both `BITBUCKET_USERNAME` and `BITBUCKET_TOKEN`, with
-`BITBUCKET_TOKEN` containing the app password. For OAuth or repository access
-tokens, `BITBUCKET_TOKEN` is enough.
+Define both `BITBUCKET_USERNAME` and `BITBUCKET_TOKEN`. `BITBUCKET_TOKEN`
+should be a Bitbucket API token with repository read/write and pull request
+access. Bitbucket app passwords are not recommended for new setups.
 
 The pipe can be used from its public Bitbucket repository and tag. Appearance in
 the public Bitbucket integrations list depends on Atlassian's pipe review and

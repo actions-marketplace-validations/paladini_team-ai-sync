@@ -11,6 +11,8 @@ tags:
   - automation
   - pull-requests
 variables:
+  - name: BITBUCKET_USERNAME
+    default: $BITBUCKET_USERNAME
   - name: BITBUCKET_TOKEN
     default: $BITBUCKET_TOKEN
   - name: CONFIG_PATH

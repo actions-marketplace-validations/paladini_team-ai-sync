@@ -84,6 +84,13 @@ describe('platform adapters', () => {
     expect(url).toBe('https://bitbucket.org/workspace/repo/pull-requests/8');
     expect(platform.authenticatedRemoteUrl(repo, 'secret')).toBe('https://bot:secret@bitbucket.org/workspace/repo.git');
   });
+
+  it('requires a Bitbucket username for authenticated git remotes', () => {
+    const platform = new BitbucketPlatform('secret');
+    const repo = platform.parseRepository('workspace/repo');
+
+    expect(() => platform.authenticatedRemoteUrl(repo, 'secret')).toThrow('Set BITBUCKET_USERNAME');
+  });
 });
 
 function json(value: unknown): Response {

@@ -134,11 +134,12 @@ pipelines:
         script:
           - pipe: paladini/team-ai-sync:1.0.0
             variables:
+              BITBUCKET_USERNAME: $BITBUCKET_USERNAME
               BITBUCKET_TOKEN: $BITBUCKET_TOKEN
               CONFIG_PATH: 'sync-config.json'
 ```
 
-For Bitbucket app passwords, also set `BITBUCKET_USERNAME`.
+Set `BITBUCKET_USERNAME` to your Bitbucket username. `BITBUCKET_TOKEN` must be a Bitbucket API token with repository read/write and pull request access.
 
 ## GitHub Action inputs
 

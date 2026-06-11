@@ -12,7 +12,9 @@ Use it when your team wants one repository to be the source of truth for files s
 
 ## About
 
-`team-ai-sync` was developed by and for the TLC community, the Tech Leads Club. It is meant to help technical leaders and their teams keep AI collaboration files, repository guidance, and shared development conventions aligned across many codebases without turning that maintenance into manual busywork.
+`team-ai-sync` was created by [Fernando Paladini](https://github.com/paladini), with love, for the TLC community, the Tech Leads Club.
+
+It is meant to help technical leaders and their teams keep AI collaboration files, repository guidance, and shared development conventions aligned across many codebases without turning that maintenance into manual busywork.
 
 ## How it works
 

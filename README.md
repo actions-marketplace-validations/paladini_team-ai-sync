@@ -4,11 +4,15 @@
 
 Use it when your team wants one repository to be the source of truth for files such as:
 
+- `AGENTS.md`
+- `CLAUDE.md`
 - `.github/copilot-instructions.md`
 - `.github/instructions/**`
+- `.github/prompts/**`
+- `.cursor/rules/**`
 - `.vscode/extensions.json`
 - `.editorconfig`
-- shared prompt or agent instruction files
+- shared prompts, agent instructions, code review guidelines, and repository conventions
 
 ## How it works
 
@@ -17,7 +21,7 @@ You keep the shared assets and `sync-config.json` in one source repository. A wo
 ```mermaid
 graph LR
     subgraph sourceRepo["Source repository"]
-        assets["Shared AI assets<br/>prompts, instructions, editor files"]
+        assets["Shared AI assets<br/>agent guidelines, prompts, editor files"]
         config["sync-config.json<br/>targets, paths, PR options"]
         workflow["GitHub workflow<br/>calls team-ai-sync"]
     end

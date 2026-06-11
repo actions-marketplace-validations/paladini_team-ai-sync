@@ -49,6 +49,21 @@ In practice:
 3. Run the workflow manually or on push.
 4. Review and merge the generated PRs in each target repository.
 
+## Live demo
+
+See the public demo repositories for a complete, real-world run:
+
+- [team-ai-sync-demo-source](https://github.com/paladini/team-ai-sync-demo-source):
+  the source of truth with shared AI guidance, prompts, config, and workflow.
+- [team-ai-sync-demo-api](https://github.com/paladini/team-ai-sync-demo-api):
+  a target repository that receives a generated sync pull request.
+- [team-ai-sync-demo-web](https://github.com/paladini/team-ai-sync-demo-web):
+  another target repository that receives the same shared guidance.
+
+The demo shows a dry run, pull request creation, pull request update, merge, and
+a final no-change run. See [examples/README.md](examples/README.md) for the
+walkthrough and evidence links.
+
 ## Usage
 
 Create a workflow in the source repository:

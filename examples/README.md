@@ -4,6 +4,37 @@ This folder shows how to configure a source repository that uses `team-ai-sync` 
 
 The source repository is the place where your team maintains files such as `AGENTS.md`, `CLAUDE.md`, `.github/instructions/**`, `.github/prompts/**`, `.editorconfig`, or other shared conventions. The target repositories are the repositories that should receive pull requests with those updates.
 
+## Public demo repositories
+
+Use these public repositories to see a complete `team-ai-sync` demonstration:
+
+- [team-ai-sync-demo-source](https://github.com/paladini/team-ai-sync-demo-source)
+  stores the shared AI guidance, prompts, `sync-config.json`, and workflow.
+- [team-ai-sync-demo-api](https://github.com/paladini/team-ai-sync-demo-api)
+  starts with stale API guidance and receives a generated sync pull request.
+- [team-ai-sync-demo-web](https://github.com/paladini/team-ai-sync-demo-web)
+  starts with partial web guidance and receives the same shared files.
+
+The demo covers this practical problem: a team wants to keep AI collaboration
+files aligned across API and web repositories without copying files by hand.
+
+The public run history shows the full lifecycle:
+
+- [Dry run with changes detected](https://github.com/paladini/team-ai-sync-demo-source/actions/runs/27315787215):
+  validates the configuration and reports changes without creating pull
+  requests.
+- [Real sync run](https://github.com/paladini/team-ai-sync-demo-source/actions/runs/27315807029):
+  opens pull requests in both target repositories.
+- [Update run](https://github.com/paladini/team-ai-sync-demo-source/actions/runs/27315999623):
+  updates the existing pull requests instead of opening duplicates.
+- [Final dry run](https://github.com/paladini/team-ai-sync-demo-source/actions/runs/27316035674):
+  reports `changed=false` after the generated pull requests are merged.
+
+Generated pull requests:
+
+- [API demo pull request](https://github.com/paladini/team-ai-sync-demo-api/pull/1)
+- [Web demo pull request](https://github.com/paladini/team-ai-sync-demo-web/pull/1)
+
 ## Files in this example
 
 ```text

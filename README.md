@@ -64,6 +64,18 @@ The demo shows a dry run, pull request creation, pull request update, merge, and
 a final no-change run. See [examples/README.md](examples/README.md) for the
 walkthrough and evidence links.
 
+## Documentation
+
+Start with the [documentation index](docs/README.md), or jump directly to:
+
+- [Getting started](docs/getting-started.md)
+- [Configuration reference](docs/configuration.md)
+- [Authentication and permissions](docs/authentication.md)
+- [Operations guide](docs/operations.md)
+- [Security model](docs/security.md)
+- [Public demo walkthrough](docs/demo.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
 ## Usage
 
 Create a workflow in the source repository:
@@ -89,7 +101,7 @@ jobs:
 
 The token must be a PAT or GitHub App token with permission to clone, push branches, and create pull requests in the target repositories.
 
-For early testing before a `v1` tag is published, pin to a commit SHA or to `paladini/team-ai-sync@main`.
+For production use, pin to the stable `paladini/team-ai-sync@v1` tag.
 
 ## Inputs
 
@@ -157,6 +169,10 @@ npm run build
 ```
 
 `dist/` is committed because JavaScript GitHub Actions execute bundled code from the repository.
+
+## Releases
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## About
 

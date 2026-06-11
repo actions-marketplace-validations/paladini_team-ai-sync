@@ -1,6 +1,6 @@
 name: Team AI Sync
 description: Sync team AI assets across GitHub repositories from a sync-config.json file.
-author: ''
+author: Fernando Paladini
 branding:
   icon: refresh-cw
   color: blue

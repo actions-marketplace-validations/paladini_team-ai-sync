@@ -4,6 +4,8 @@ This folder shows how to configure a source repository that uses `team-ai-sync` 
 
 The source repository is the place where your team maintains files such as `AGENTS.md`, `CLAUDE.md`, `.github/instructions/**`, `.github/prompts/**`, `.editorconfig`, or other shared conventions. The target repositories are the repositories that should receive pull requests with those updates.
 
+For the full documentation set, see [../docs/README.md](../docs/README.md).
+
 ## Public demo repositories
 
 Use these public repositories to see a complete `team-ai-sync` demonstration:
@@ -84,7 +86,7 @@ jobs:
           config-path: sync-config.json
 ```
 
-Before the first stable `v1` tag is published, use `paladini/team-ai-sync@main` or pin to a commit SHA.
+Use `paladini/team-ai-sync@v1` for the stable release.
 
 ## 2. Add the sync config
 
@@ -184,6 +186,7 @@ Remove `dry-run: true` when the output looks right.
 
 ## Troubleshooting
 
+- Start with the full [troubleshooting guide](../docs/troubleshooting.md).
 - `Resource not accessible by integration`: the token does not have access to the target repository or lacks a required permission.
 - `Configured file does not exist`: the file listed in `sync-config.json` is missing from the source repository.
 - No pull request was created: there may be no changes compared with the target repository.

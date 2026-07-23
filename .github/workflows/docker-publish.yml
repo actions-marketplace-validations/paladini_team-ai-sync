@@ -1,0 +1,125 @@
+name: Docker Publish
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Extra image tag to publish (in addition to latest / git ref tags)"
+        required: false
+        default: "latest"
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  GHCR_IMAGE: ghcr.io/paladini/team-ai-sync
+  DOCKERHUB_IMAGE: paladini/team-ai-sync
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Detect Docker Hub credentials
+        id: dockerhub
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: |
+          if [ -n "$DOCKERHUB_USERNAME" ] && [ -n "$DOCKERHUB_PASSWORD" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "Docker Hub secrets not set; publishing to GHCR only (Bitbucket tag pipeline remains the Docker Hub path)."
+          fi
+
+      - name: Log in to Docker Hub
+        if: steps.dockerhub.outputs.enabled == 'true'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Prepare image list
+        id: images
+        run: |
+          images="${GHCR_IMAGE}"
+          if [ "${{ steps.dockerhub.outputs.enabled }}" = "true" ]; then
+            images="${images}"$'\n'"${DOCKERHUB_IMAGE}"
+          fi
+          {
+            echo "list<<EOF"
+            printf '%s\n' "$images"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.images.outputs.list }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest,enable=${{ github.ref_type == 'tag' || github.event_name == 'workflow_dispatch' }}
+            type=raw,value=${{ inputs.tag }},enable=${{ github.event_name == 'workflow_dispatch' && inputs.tag != '' }}
+            type=sha,prefix=sha-,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          provenance: false
+
+      - name: Make GHCR package public
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # First publish is often private; try API, fall back to UI note in docs.
+          gh api --method PUT \
+            -H "Accept: application/vnd.github+json" \
+            "/user/packages/container/team-ai-sync/visibility" \
+            -f visibility=public
+
+      - name: Summary
+        run: |
+          {
+            echo "## Published images"
+            echo ""
+            echo '```'
+            echo "${{ steps.meta.outputs.tags }}"
+            echo '```'
+            echo ""
+            echo "- GHCR: \`ghcr.io/paladini/team-ai-sync\`"
+            if [ "${{ steps.dockerhub.outputs.enabled }}" = "true" ]; then
+              echo "- Docker Hub: \`paladini/team-ai-sync\` (also pushed from this workflow)"
+            else
+              echo "- Docker Hub: still published from Bitbucket tag pipeline (unchanged)"
+            fi
+            echo ""
+            echo "### Public visibility"
+            echo "If the package is private, open"
+            echo "[Package settings](https://github.com/users/paladini/packages/container/team-ai-sync/settings)"
+            echo "→ **Change visibility** → **Public**."
+          } >> "$GITHUB_STEP_SUMMARY"

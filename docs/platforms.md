@@ -92,8 +92,10 @@ ghcr.io/paladini/team-ai-sync:<semver>
 ```
 
 - **Docker Hub** — published from Bitbucket Pipelines on git tags (existing flow).
-- **GHCR** — published from GitHub Actions (`.github/workflows/publish-ghcr.yml`)
-  on `v*` tags and via `workflow_dispatch`.
+- **GHCR** — published from GitHub Actions (`.github/workflows/docker-publish.yml`)
+  on `v*` tags and via `workflow_dispatch`. When `DOCKERHUB_USERNAME` /
+  `DOCKERHUB_PASSWORD` secrets are set on GitHub, the same workflow also pushes
+  to Docker Hub; otherwise Docker Hub remains Bitbucket-only.
 
 Pin production usage to a SemVer tag. Avoid relying on mutable image tags for
 team-wide automation.

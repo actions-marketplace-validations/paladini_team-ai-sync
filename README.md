@@ -4,6 +4,7 @@
 [![CI](https://github.com/paladini/team-ai-sync/actions/workflows/ci.yml/badge.svg)](https://github.com/paladini/team-ai-sync/actions/workflows/ci.yml)
 [![GitHub Marketplace](https://img.shields.io/badge/GitHub%20Marketplace-team--ai--sync-blue?logo=github)](https://github.com/marketplace/actions/team-ai-sync)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-paladini%2Fteam--ai--sync-2496ed?logo=docker&logoColor=white)](https://hub.docker.com/r/paladini/team-ai-sync)
+[![GHCR](https://img.shields.io/badge/GHCR-ghcr.io%2Fpaladini%2Fteam--ai--sync-black?logo=github)](https://github.com/paladini/team-ai-sync/pkgs/container/team-ai-sync)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Sync shared AI guidance files from one source repository to many target
@@ -20,7 +21,7 @@ Pipe. Each package is designed for repositories hosted on that same platform.
 
 **Documentation:** [docs/README.md](docs/README.md)
 
-**Docker image:** [paladini/team-ai-sync](https://hub.docker.com/r/paladini/team-ai-sync)
+**Docker image:** [Docker Hub](https://hub.docker.com/r/paladini/team-ai-sync) · [GHCR](https://github.com/paladini/team-ai-sync/pkgs/container/team-ai-sync)
 
 ## Why teams use it
 
@@ -79,7 +80,7 @@ is not the supported operating model.
 | GitHub | [GitHub Action](https://github.com/marketplace/actions/team-ai-sync) | Pull requests |
 | GitLab | [GitLab CI/CD Component](https://gitlab.com/explore/catalog/paladini/team-ai-sync) | Merge requests |
 | Bitbucket | `paladini/team-ai-sync:1.0.0` Bitbucket Pipe | Pull requests |
-| Docker | [paladini/team-ai-sync](https://hub.docker.com/r/paladini/team-ai-sync) | Runtime for GitLab and Bitbucket wrappers |
+| Docker | [Docker Hub](https://hub.docker.com/r/paladini/team-ai-sync) / [GHCR](https://github.com/paladini/team-ai-sync/pkgs/container/team-ai-sync) | Runtime for GitLab and Bitbucket wrappers |
 
 ## Quick start for GitHub Actions
 

@@ -83,11 +83,26 @@ curation process.
 
 ## OCI image
 
-GitLab and Bitbucket wrappers run the same versioned OCI image:
+GitLab and Bitbucket wrappers run the same versioned OCI image. The image is
+published to both registries:
 
 ```text
 paladini/team-ai-sync:<semver>
+ghcr.io/paladini/team-ai-sync:<semver>
 ```
+
+- **Docker Hub** — published from Bitbucket Pipelines on git tags (existing flow).
+- **GHCR** — published from GitHub Actions (`.github/workflows/publish-ghcr.yml`)
+  on `v*` tags and via `workflow_dispatch`.
 
 Pin production usage to a SemVer tag. Avoid relying on mutable image tags for
 team-wide automation.
+
+### GHCR visibility
+
+The first GHCR package may be created as private. To make it public:
+
+1. Open [github.com/users/paladini/packages](https://github.com/users/paladini/packages)
+   (or **Packages** on the repository page).
+2. Select `team-ai-sync`.
+3. **Package settings** → **Change visibility** → **Public**.

@@ -1,6 +1,6 @@
 # team-ai-sync
 
-<img alt="Harness Score L0" src="https://paladini.github.io/harness-score/maturity/badge-l0.svg" height="20">
+<a href="https://paladini.github.io/harness-score/guide/maturity-model#l0-unharnessed" title="Harness Score — AI coding harness maturity"><img alt="Harness Score L0 (Unharnessed): measures AI-assisted development harness maturity with harness-score" src="https://paladini.github.io/harness-score/maturity/badge-l0.svg" height="20"></a>
 [![CI](https://github.com/paladini/team-ai-sync/actions/workflows/ci.yml/badge.svg)](https://github.com/paladini/team-ai-sync/actions/workflows/ci.yml)
 [![GitHub Marketplace](https://img.shields.io/badge/GitHub%20Marketplace-team--ai--sync-blue?logo=github)](https://github.com/marketplace/actions/team-ai-sync)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-paladini%2Fteam--ai--sync-2496ed?logo=docker&logoColor=white)](https://hub.docker.com/r/paladini/team-ai-sync)

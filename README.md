@@ -1,4 +1,4 @@
-﻿# team-ai-sync
+# team-ai-sync
 
 <img alt="Harness Score L0" src="https://paladini.github.io/harness-score/maturity/badge-l0.svg" height="20">
 [![CI](https://github.com/paladini/team-ai-sync/actions/workflows/ci.yml/badge.svg)](https://github.com/paladini/team-ai-sync/actions/workflows/ci.yml)
